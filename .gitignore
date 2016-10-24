@@ -99,7 +99,3 @@ configure*
 *.bak
 Thumbs.db
 .directory
-*.vcxproj
-*.filters
-MAHBUILD.bat
-*.sln
