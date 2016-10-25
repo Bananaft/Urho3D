@@ -3028,12 +3028,12 @@ void View::SetupLightVolumeBatch(Batch& batch)
         if (lightDist < camera_->GetNearClip() * 2.0f)
         {
             renderer_->SetCullMode(CULL_CW, camera_);
-            graphics_->SetDepthTest(CMP_GREATER);
+           // graphics_->SetDepthTest(CMP_GREATER);
         }
         else
         {
             renderer_->SetCullMode(CULL_CCW, camera_);
-            graphics_->SetDepthTest(CMP_LESSEQUAL);
+          //  graphics_->SetDepthTest(CMP_LESSEQUAL);
         }
     }
     else
