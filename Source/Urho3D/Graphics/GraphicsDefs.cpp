@@ -56,6 +56,7 @@ extern URHO3D_API const StringHash VSP_UOFFSET("UOffset");
 extern URHO3D_API const StringHash VSP_VOFFSET("VOffset");
 extern URHO3D_API const StringHash VSP_ZONE("Zone");
 extern URHO3D_API const StringHash VSP_LIGHTMATRICES("LightMatrices");
+extern URHO3D_API const StringHash VSP_SPOTMATRIX("SpotMatrix");
 extern URHO3D_API const StringHash VSP_SKINMATRICES("SkinMatrices");
 extern URHO3D_API const StringHash VSP_VERTEXLIGHTS("VertexLights");
 extern URHO3D_API const StringHash PSP_AMBIENTCOLOR("AmbientColor");

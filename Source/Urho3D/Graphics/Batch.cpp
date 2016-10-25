@@ -342,6 +342,8 @@ void Batch::Prepare(View* view, Camera* camera, bool setModelTransform, bool all
                             CalculateShadowMatrix(shadowMatrices[1], lightQueue_, 0, renderer);
 
                         graphics->SetShaderParameter(VSP_LIGHTMATRICES, shadowMatrices[0].Data(), isShadowed ? 32 : 16);
+						Matrix4 lightVecRot(lightNode->GetWorldRotation().RotationMatrix());
+						graphics->SetShaderParameter(VSP_SPOTMATRIX, lightVecRot.Data(), 16);
                     }
                     break;
 

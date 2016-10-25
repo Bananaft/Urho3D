@@ -391,6 +391,7 @@ extern URHO3D_API const StringHash VSP_UOFFSET;
 extern URHO3D_API const StringHash VSP_VOFFSET;
 extern URHO3D_API const StringHash VSP_ZONE;
 extern URHO3D_API const StringHash VSP_LIGHTMATRICES;
+extern URHO3D_API const StringHash VSP_SPOTMATRIX;
 extern URHO3D_API const StringHash VSP_SKINMATRICES;
 extern URHO3D_API const StringHash VSP_VERTEXLIGHTS;
 extern URHO3D_API const StringHash PSP_AMBIENTCOLOR;

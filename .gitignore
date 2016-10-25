@@ -101,3 +101,13 @@ Thumbs.db
 .directory
 *.vcxproj
 *.filters
+*.sln
+*.obj
+*.tlog
+*.pdb
+*.lib
+*.exp
+*.pch
+*.ipch
+Urho3D.sdf
+*.suo
