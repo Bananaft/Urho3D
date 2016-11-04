@@ -318,7 +318,7 @@ void Batch::Prepare(View* view, Camera* camera, bool setModelTransform, bool all
 			
 			Matrix4 lightRot(lightNode->GetWorldRotation().RotationMatrix());
 			graphics->SetShaderParameter(VSP_SPOTMATRIX, lightRot.Data(), 16);
-			graphics->SetShaderParameter(PSP_SPOTFOV, light->GetFov());
+			graphics->SetShaderParameter(PSP_SPOTFOV, light->GetFov() * M_DEGTORAD);
 			
 
             if (graphics->HasShaderParameter(VSP_LIGHTMATRICES))
