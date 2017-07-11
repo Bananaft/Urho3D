@@ -39,6 +39,8 @@
 #include <Urho3D/UI/Font.h>
 #include <Urho3D/UI/Text.h>
 #include <Urho3D/UI/UI.h>
+#include <Urho3D/IO/Log.h>
+#include <Urho3D/Resource/Image.h>
 
 #include "RenderToTexture.h"
 #include "Rotator.h"
@@ -93,15 +95,16 @@ void RenderToTexture::CreateScene()
         zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
         zone->SetAmbientColor(Color(0.05f, 0.1f, 0.15f));
         zone->SetFogColor(Color(0.1f, 0.2f, 0.3f));
-        zone->SetFogStart(10.0f);
+        zone->SetFogStart(20.0f);
         zone->SetFogEnd(100.0f);
 
         // Create randomly positioned and oriented box StaticModels in the scene
-        const unsigned NUM_OBJECTS = 2000;
+        const unsigned NUM_OBJECTS = 500;
         for (unsigned i = 0; i < NUM_OBJECTS; ++i)
         {
             Node* boxNode = rttScene_->CreateChild("Box");
-            boxNode->SetPosition(Vector3(Random(200.0f) - 100.0f, Random(200.0f) - 100.0f, Random(200.0f) - 100.0f));
+            boxNode->SetPosition(Vector3(Random(50.0f) - 25.0f, Random(50.0f) - 25.0f, Random(50.0f)));
+			boxNode->SetScale(2.0f);
             // Orient using random pitch, yaw and roll Euler angles
             boxNode->SetRotation(Quaternion(Random(360.0f), Random(360.0f), Random(360.0f)));
             StaticModel* boxObject = boxNode->CreateComponent<StaticModel>();
@@ -122,7 +125,7 @@ void RenderToTexture::CreateScene()
         // Create a point light to the camera scene node
         Light* light = rttCameraNode_->CreateComponent<Light>();
         light->SetLightType(LIGHT_POINT);
-        light->SetRange(30.0f);
+        light->SetRange(80.0f);
     }
 
     {
@@ -175,15 +178,15 @@ void RenderToTexture::CreateScene()
             Node* screenNode = scene_->CreateChild("Screen");
             screenNode->SetPosition(Vector3(0.0f, 10.0f, -0.27f));
             screenNode->SetRotation(Quaternion(-90.0f, 0.0f, 0.0f));
-            screenNode->SetScale(Vector3(20.0f, 0.0f, 15.0f));
+            screenNode->SetScale(Vector3(15.0f, 0.0f, 15.0f));
             StaticModel* screenObject = screenNode->CreateComponent<StaticModel>();
             screenObject->SetModel(cache->GetResource<Model>("Models/Plane.mdl"));
 
             // Create a renderable texture (1024x768, RGB format), enable bilinear filtering on it
             SharedPtr<Texture2D> renderTexture(new Texture2D(context_));
-            renderTexture->SetSize(1024, 768, Graphics::GetRGBFormat(), TEXTURE_RENDERTARGET);
-            renderTexture->SetFilterMode(FILTER_BILINEAR);
-
+            renderTexture->SetSize(32, 32, Graphics::GetRGBFormat(), TEXTURE_RENDERTARGET);
+            renderTexture->SetFilterMode(FILTER_NEAREST);
+			rttex = &renderTexture;
             // Create a new material from scratch, use the diffuse unlit technique, assign the render texture
             // as its diffuse texture, then assign the material to the screen plane object
             SharedPtr<Material> renderMaterial(new Material(context_));
@@ -286,4 +289,6 @@ void RenderToTexture::HandleUpdate(StringHash eventType, VariantMap& eventData)
 
     // Move the camera, scale movement with time step
     MoveCamera(timeStep);
+	//URHO3D_LOGINFO("hello");
+	texImg() = *rttex->GetImage();
 }

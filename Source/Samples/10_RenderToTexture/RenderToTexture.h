@@ -65,4 +65,8 @@ private:
     SharedPtr<Scene> rttScene_;
     /// Camera scene node in the render-to-texture scene.
     SharedPtr<Node> rttCameraNode_;
+	Vector3 texData[32][32];
+	Image texImg();
+	SharedPtr<Texture2D> *rttex;
+
 };
